@@ -107,6 +107,31 @@ async function run() {
     })
       //userinfo api//
 
+  //user make admin//
+    app.put('/makeadmin', async (req ,res) => {
+      const filter = {email:req.body.email};
+      const resualt = await userColloction .find(filter).toArray();
+      if(resualt){
+        const documents = await userColloction.updateOne(filter,{
+          $set :{role:"admin"},
+        })
+       
+      }}
+    )
+    //user make admin//
+
+    //  // check admin or not
+     app.get("/checkAdmin/:email", async (req, res) => {
+      const result = await userColloction
+        .find({ email: req.params.email })
+        .toArray();
+      res.send(result);
+    });
+
+
+
+      
+
 
 //******************** All Post Api  ********************************* */
 
