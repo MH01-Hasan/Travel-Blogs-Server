@@ -38,6 +38,7 @@ async function run() {
          
             const cursor = BlogsColloction.find({});
             const page = req.query.page;
+
             const size = parseInt(req.query.size);
             const count = await cursor.count()
             let Blogs;
@@ -69,7 +70,7 @@ async function run() {
 
   // GET Find single data deatails  Document Client site read code//
 
-  //find  a single  order data//
+  //find  a single   data//
     app.get("/mypost/:email", async (req, res) => {
       const result = await BlogsColloction.find({
         email: req.params.email,
@@ -77,7 +78,7 @@ async function run() {
       res.send(result);
     });
 
-    //find  a single  order data//
+    //find  a single  data//
 
 
 
