@@ -35,9 +35,26 @@ async function run() {
 
     //GEt  Find Multiple Documents Client site read code//
         app.get('/Blogs',async(req, res) =>{
+         
             const cursor = BlogsColloction.find({});
-            const Blogs= await cursor.toArray();
-            res.send(Blogs)
+            const page = req.query.page;
+            const size = parseInt(req.query.size);
+            const count = await cursor.count()
+            let Blogs;
+            if(page){
+              Blogs= await cursor.skip(page*size).limit(size).toArray();
+
+            }
+            else{
+              Blogs= await cursor.toArray();
+
+            }
+          
+            
+            res.send({
+              count,
+              Blogs
+            })
         })
     //GEt  Find Multiple Documents Client site read code//
     
